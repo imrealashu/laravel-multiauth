@@ -20,7 +20,9 @@ Route::group(['middleware' => ['web']], function(){
 	Route::get('/home', 'HomeController@index');
 });
 
-Route::group(['middleware' => ['web']], function () {
+
+// As all routes are always wrapped with web middleware. Grouping again wil lead to multiple redirect on route call.
+// Route::group(['middleware' => ['web']], function () {
     //Login Routes...
     Route::get('/admin/login','AdminAuth\AuthController@showLoginForm');
     Route::post('/admin/login','AdminAuth\AuthController@login');
@@ -35,4 +37,4 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('admin/password/reset/{token?}','AdminAuth\PasswordController@showResetForm');
 
     Route::get('/admin', 'AdminController@index');
-});  
+// });  
